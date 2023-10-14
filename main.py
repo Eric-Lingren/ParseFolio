@@ -69,6 +69,12 @@ print(mean_number_of_trades)
 print('\n')
 
 
+trades_ranked_by_count = Trade_Analysis.rank_pairs(trade_counts_df, mean_number_of_trades)
+print('trades_ranked_by_count')
+print(trades_ranked_by_count)
+print('\n')
+
+
 # Convert 'Duration' to total seconds (numeric value)
 df['Duration'] = df['Duration'].dt.total_seconds()
 # # Group by 'Symbol' and calculate the average duration in seconds

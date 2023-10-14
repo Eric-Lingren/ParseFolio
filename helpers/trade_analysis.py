@@ -41,6 +41,35 @@ class Trade_Analysis():
         mean_trade_count = round(trade_counts['Trade Count'].mean(), 2)
 
         return mean_trade_count
+    
+
+    @staticmethod
+    def rank_pairs(df, mean_trade_count):
+        print('Doesnt work properly yet - fix this rank_pairs function')
+        # Calculate the rank for each pair
+        df['Rank'] = df.apply(lambda row: row['Profitable Trade Count'] + (mean_trade_count - row['Trade Count']) if row['Trade Count'] < mean_trade_count else row['Profitable Trade Count'], axis=1)
+
+        # Sort the DataFrame by rank in descending order
+        ranked_df = df.sort_values(by='Rank', ascending=False)
+
+        # Reset the index for cleaner output
+        ranked_df = ranked_df.reset_index(drop=True)
+
+        # Return the ranked pairs in the same format as the input
+        return ranked_df[['Symbol', 'Trade Count', 'Profitable Trade Count', 'Loosing Trade Count']]
+
+
+
+    # def rank_pairs(df, mean_trade_count):
+    #     # Calculate the rank for each pair
+    #     df['Rank'] = df.apply(lambda row: row['Profitable Trade Count'] + (mean_trade_count - row['Trade Count']) if row['Trade Count'] < mean_trade_count else row['Profitable Trade Count'], axis=1)
+
+    #     # Sort the DataFrame by rank in descending order
+    #     ranked_df = df.sort_values(by='Rank', ascending=False)
+
+    #     # Return the ranked pairs
+    #     return ranked_df['Symbol'].tolist()
+
 
 
 
