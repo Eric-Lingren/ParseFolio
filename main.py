@@ -69,31 +69,47 @@ print(mean_number_of_trades)
 print('\n')
 
 
-trades_ranked_by_count = Trade_Analysis.rank_pairs(trade_counts_df, mean_number_of_trades)
+trades_ranked_by_count = Trade_Analysis.rank_pairs_by_trade_counts(trade_counts_df)
 print('trades_ranked_by_count')
 print(trades_ranked_by_count)
 print('\n')
 
 
-# Convert 'Duration' to total seconds (numeric value)
-df['Duration'] = df['Duration'].dt.total_seconds()
-# # Group by 'Symbol' and calculate the average duration in seconds
-average_duration_by_pair_hours = df.groupby('Symbol')['Duration'].mean().reset_index()
-# Convert average duration to hours
-average_duration_by_pair_hours['Duration'] = average_duration_by_pair_hours['Duration'] / 60
-# Convert average duration to hours
-average_duration_by_pair_hours['Duration'] = average_duration_by_pair_hours['Duration'] / 60
+average_duration_by_pair_hours = Trade_Analysis.rank_pairs_by_trade_duration(df)
 print('average_duration_by_pair_hours')
 print(average_duration_by_pair_hours)
 print('\n')
 
-# Assuming 'Profit' column contains the profit or loss values
-total_profit_loss_by_pair = df.groupby('Symbol')['Profit'].sum().reset_index()
+
+total_profit_loss_by_pair = Trade_Analysis.rank_pairs_by_total_profit(df)
 print('total_profit_loss_by_pair')
 print(total_profit_loss_by_pair)
 print('\n')
 
-# Assuming 'Profit' column contains the profit or loss values
+# Merge the DataFrames on the 'Symbol' column
+combined_df = average_duration_by_pair_hours.merge(total_profit_loss_by_pair, on='Symbol')
+print('Combined DataFrame:')
+print(combined_df)
+print('\n')
+
+
+
+profit_per_hour_of_holding_time = Trade_Analysis.calculate_profit_per_hour_of_holding_time(combined_df)
+print('profit_per_hour_of_holding_time:')
+print(profit_per_hour_of_holding_time)
+print('\n')
+
+
+# Merge the DataFrames on the 'Symbol' column
+eval_df = profit_per_hour_of_holding_time.merge(trade_counts_df, on='Symbol')
+print('Eval DataFrame:')
+print(eval_df)
+print('\n')
+
+
+
+
+
 average_profit_loss_per_trade_by_pair = df.groupby('Symbol')['Profit'].mean().reset_index()
 print('average_profit_loss_per_trade_by_pair')
 print(average_profit_loss_per_trade_by_pair)

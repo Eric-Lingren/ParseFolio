@@ -42,15 +42,25 @@ class Trade_Analysis():
 
         return mean_trade_count
     
-
     @staticmethod
-    def rank_pairs(df, mean_trade_count):
-        print('Doesnt work properly yet - fix this rank_pairs function')
-        # Calculate the rank for each pair
-        df['Rank'] = df.apply(lambda row: row['Profitable Trade Count'] + (mean_trade_count - row['Trade Count']) if row['Trade Count'] < mean_trade_count else row['Profitable Trade Count'], axis=1)
+    def rank_pairs_by_trade_counts(df):
+        # # Calculate the rank for each pair based on profitable trade count
+        no_losing_trades = df[df['Loosing Trade Count'] == 0]
 
-        # Sort the DataFrame by rank in descending order
-        ranked_df = df.sort_values(by='Rank', ascending=False)
+        # Sort the filtered DataFrame by profitable trade count in descending order
+        sorted_no_losing_trades = no_losing_trades.sort_values(by='Profitable Trade Count', ascending=False)
+
+        # Get the indices of the sorted rows
+        sorted_indices = sorted_no_losing_trades.index
+
+        # Create a mask to identify the remaining rows with losing trade counts
+        remaining_mask = ~df.index.isin(sorted_indices)
+
+        # Get the remaining rows
+        remaining_rows = df[remaining_mask]
+
+        # Concatenate the sorted portion with the remaining data
+        ranked_df = pd.concat([sorted_no_losing_trades, remaining_rows])
 
         # Reset the index for cleaner output
         ranked_df = ranked_df.reset_index(drop=True)
@@ -60,16 +70,43 @@ class Trade_Analysis():
 
 
 
-    # def rank_pairs(df, mean_trade_count):
-    #     # Calculate the rank for each pair
-    #     df['Rank'] = df.apply(lambda row: row['Profitable Trade Count'] + (mean_trade_count - row['Trade Count']) if row['Trade Count'] < mean_trade_count else row['Profitable Trade Count'], axis=1)
+    @staticmethod
+    def rank_pairs_by_trade_duration(df):
+        # Convert 'Duration' to total seconds (numeric value)
+        df['Duration'] = df['Duration'].dt.total_seconds()
+        # # Group by 'Symbol' and calculate the average duration in seconds
+        average_duration_by_pair_hours = df.groupby('Symbol')['Duration'].mean().reset_index()
+        # Convert average duration to hours
+        average_duration_by_pair_hours['Duration'] = average_duration_by_pair_hours['Duration'] / 60
+        # Convert average duration to hours
+        average_duration_by_pair_hours['Duration'] = average_duration_by_pair_hours['Duration'] / 60
+        # return average_duration_by_pair_hours
+        # Sort the DataFrame by duration in ascending order (shortest duration first)
+        sorted_df = average_duration_by_pair_hours.sort_values(by='Duration', ascending=True)
+        # Reset the index for cleaner output
+        sorted_df = sorted_df.reset_index(drop=True)
+        
+        return sorted_df
 
-    #     # Sort the DataFrame by rank in descending order
-    #     ranked_df = df.sort_values(by='Rank', ascending=False)
+    @staticmethod
+    def rank_pairs_by_total_profit(df):
+        total_profit_loss_by_pair = df.groupby('Symbol')['Profit'].sum()
+        sorted_df = total_profit_loss_by_pair.sort_values(ascending=False).reset_index()
+        return sorted_df
+    
 
-    #     # Return the ranked pairs
-    #     return ranked_df['Symbol'].tolist()
+    @staticmethod
+    def calculate_profit_per_hour_of_holding_time(df):
+        # Calculate average profit per hour
+        df['Average Profit per Hour'] = df['Profit'] / df['Duration']\
 
+        # Sort the DataFrame by 'Average Profit per Hour' in descending order
+        sorted_df = df.sort_values(by='Average Profit per Hour', ascending=False)
+
+        # Reset the index for cleaner output
+        sorted_df = sorted_df.reset_index(drop=True)
+
+        return sorted_df
 
 
 
