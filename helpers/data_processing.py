@@ -5,11 +5,25 @@ from helpers.logger import Logger
 
 
 class DataProcessing():
+    FILE_PATH = None
 
-    @staticmethod
-    def get_current_timestamp():
-        return datetime.now().strftime("%m-%d-%Y_%H:%M:%S")
-    
+    def __init__(self, FILE_PATH):
+        self.FILE_PATH = FILE_PATH
+
+    def run_all_data_processing_tasks(self, TIMESTAMP, csv_file_name):
+        df  = self.load_csv_to_df(self.FILE_PATH)
+        df  = self.remove_blank_rows(df)
+        df  = self.remove_open_trade_rows(df)
+        df = self.remove_deposit_rows(df)
+        df = self.remove_withdrawal_rows(df)
+        df = self.calculate_trade_durations(df)
+        df = self.remove_tags_column(df)
+        df = df.reset_index(drop=True)
+        Logger.csv_cleaned_successfully(df)
+        self.save_df_as_csv(df, TIMESTAMP, csv_file_name)
+        return df 
+
+
     @staticmethod
     def load_csv_to_df(file_path):
         try:
@@ -23,11 +37,13 @@ class DataProcessing():
         except pd.errors.ParserError as e:
             Logger.pandas_csv_parse_error(e)
             exit()
-    
+
+
     @staticmethod
     def get_log_filename(timestamp, csv_file_name):
         return f"./logs/{timestamp}_{csv_file_name}-log.log"
-    
+
+
     @staticmethod
     def remove_blank_rows(df):
         Logger.method_ran('remove_blank_rows')
@@ -37,7 +53,8 @@ class DataProcessing():
         except Exception as e:
             Logger.method_failed('remove_blank_rows', e)
         return df
-    
+
+
     @staticmethod
     def remove_open_trade_rows(df):
         Logger.method_ran('remove_open_trade_rows')
@@ -63,6 +80,7 @@ class DataProcessing():
             Logger.method_failed('remove_open_trade_rows', e)
         return df
 
+
     @staticmethod
     def remove_deposit_rows(df):
         Logger.method_ran('remove_deposit_rows')
@@ -78,13 +96,14 @@ class DataProcessing():
             Logger.method_failed('remove_deposit_rows', e)
         return df
 
+
     @staticmethod
     def remove_withdrawal_rows(df):
         Logger.method_ran('remove_withdrawal_rows')
         try:
             dropped_rows = df[df['Action'].isin(['Withdrawal'])]
             if dropped_rows.empty:
-                Logger.warn("No rows found with Action 'Withdrawal'. Skipping drop operation.")
+                Logger.warn("No rows found with action 'Withdrawal'. Skipping drop operation.")
             else:
                 Logger.method_succeeded('remove_withdrawal_rows')
                 Logger.log_dropped_rows(dropped_rows)
@@ -98,7 +117,8 @@ class DataProcessing():
     def custom_to_timedelta(duration_str):
         days, hh, mm, ss = map(int, duration_str.split(':'))
         return pd.Timedelta(days=days, hours=hh, minutes=mm, seconds=ss)
-    
+
+
     @staticmethod
     def calculate_trade_durations(df):
         Logger.method_ran('calculate_trade_durations')
@@ -118,6 +138,7 @@ class DataProcessing():
             Logger.method_failed('calculate_trade_durations', e)
             return df
 
+
     @staticmethod
     def remove_tags_column(df):
         Logger.method_ran('remove_tags_column')
@@ -131,7 +152,8 @@ class DataProcessing():
         except Exception as e:
             Logger.method_failed('remove_tags_column', e)
             return df  
-    
+
+
     @staticmethod
     def save_df_as_csv(df, timestamp, csv_file_name):
         try:
