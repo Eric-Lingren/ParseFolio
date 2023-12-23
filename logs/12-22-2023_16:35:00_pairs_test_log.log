@@ -1,0 +1,48 @@
+2023-12-22 16:35:27,390 - INFO - ***** Beginning Parsing For File: data/raw_data/pairs_test.csv *****
+2023-12-22 16:35:27,396 - INFO - Method Ran: remove_blank_rows
+2023-12-22 16:35:27,397 - INFO - Method Successful: remove_blank_rows
+2023-12-22 16:35:27,397 - INFO - Method Ran: remove_open_trade_rows
+2023-12-22 16:35:27,398 - INFO - Method Successful: remove_open_trade_rows
+2023-12-22 16:35:27,398 - INFO - The Following Rows Were Dropped:
+2023-12-22 16:35:27,398 - INFO -            Tags     Ticket         Open Date Close Date  ... Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+85  Open Trades        NaN               NaN        NaN  ...               NaN              NaN                NaN               NaN
+86         Tags     Ticket         Open Date     Symbol  ...               NaN              NaN                NaN               NaN
+87          NaN  322715636  08/31/2023 17:45     USDHKD  ...               NaN              NaN                NaN               NaN
+88          NaN  324121867  09/22/2023 05:55     EURSGD  ...               NaN              NaN                NaN               NaN
+89          NaN  325845093  10/12/2023 01:05     SGDCHF  ...               NaN              NaN                NaN               NaN
+90          NaN  326000462  10/13/2023 14:00     EURCAD  ...               NaN              NaN                NaN               NaN
+91          NaN  326148474  10/16/2023 12:55     USDHKD  ...               NaN              NaN                NaN               NaN
+
+[7 rows x 31 columns]
+2023-12-22 16:35:27,415 - INFO - Method Ran: remove_deposit_rows
+2023-12-22 16:35:27,416 - INFO - Method Successful: remove_deposit_rows
+2023-12-22 16:35:27,416 - INFO - The Following Rows Were Dropped:
+2023-12-22 16:35:27,416 - INFO -    Tags     Ticket         Open Date Close Date  ... Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+84  NaN  322592204  08/30/2023 14:45        NaN  ...               NaN              NaN                NaN               NaN
+
+[1 rows x 31 columns]
+2023-12-22 16:35:27,425 - INFO - Method Ran: remove_withdrawal_rows
+2023-12-22 16:35:27,425 - WARNING - No rows found with Action 'Withdrawal'. Skipping drop operation.
+2023-12-22 16:35:27,425 - INFO - Method Ran: calculate_trade_durations
+2023-12-22 16:35:27,426 - INFO - Converted strings in column 'Duration (DD:HH:MM:SS)' to datetimes in column 'Duration' 
+2023-12-22 16:35:27,426 - INFO - Method Successful: calculate_trade_durations
+2023-12-22 16:35:27,426 - INFO - Dropped Column 'Duration (DD:HH:MM:SS)' 
+2023-12-22 16:35:27,426 - INFO - Method Ran: remove_tags_column
+2023-12-22 16:35:27,426 - INFO - Method Successful: remove_tags_column
+2023-12-22 16:35:27,426 - INFO - Dropped Column 'Tags' 
+2023-12-22 16:35:27,427 - INFO - ***** File Cleaned Successfully *****
+2023-12-22 16:35:27,427 - INFO - Final DataFrame Output:
+2023-12-22 16:35:27,427 - INFO -        Ticket         Open Date        Close Date  Symbol  ... Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)        Duration
+0   326025892  10/13/2023 18:30  10/16/2023 10:00  EURCHF  ...              NaN                NaN               NaN 2 days 15:30:33
+1   326037344  10/13/2023 20:05  10/16/2023 01:25  AUDCHF  ...              NaN                NaN               NaN 2 days 05:20:36
+2   325924850  10/12/2023 18:55  10/13/2023 17:25  GBPAUD  ...              NaN                NaN               NaN 0 days 22:30:51
+3   325528428  10/09/2023 18:05  10/12/2023 20:01  GBPUSD  ...              NaN                NaN               NaN 3 days 01:56:58
+4   325909883  10/12/2023 16:15  10/12/2023 17:50  EURCAD  ...              NaN                NaN               NaN 0 days 01:35:39
+..        ...               ...               ...     ...  ...              ...                ...               ...             ...
+79  322828368  09/01/2023 17:05  09/05/2023 16:05  CADSGD  ...              NaN                NaN               NaN 3 days 23:00:51
+80  322910429  09/04/2023 12:25  09/05/2023 10:54  GBPJPY  ...              NaN                NaN               NaN 0 days 22:29:53
+81  322817083  09/01/2023 15:55  09/01/2023 16:47  AUDCHF  ...              NaN                NaN               NaN 0 days 00:52:49
+82  322817094  09/01/2023 15:55  09/01/2023 16:47  AUDSGD  ...              NaN                NaN               NaN 0 days 00:52:03
+83  322817085  09/01/2023 15:55  09/01/2023 16:40  AUDUSD  ...              NaN                NaN               NaN 0 days 00:45:08
+
+[84 rows x 30 columns]

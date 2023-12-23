@@ -1,0 +1,16 @@
+2023-12-23 14:27:17,274 - INFO - ***** Beginning Parsing For File: data/raw_data/pairs_test.csv *****
+2023-12-23 14:27:17,280 - INFO - Method Ran: remove_blank_rows
+2023-12-23 14:27:17,281 - INFO - Method Successful: remove_blank_rows
+2023-12-23 14:27:17,281 - INFO - Method Ran: remove_open_trade_rows
+2023-12-23 14:27:17,281 - INFO - Method Successful: remove_open_trade_rows
+2023-12-23 14:27:17,281 - INFO - The Following Rows Were Dropped:
+2023-12-23 14:27:17,281 - INFO -            Tags     Ticket         Open Date Close Date  ... Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+85  Open Trades        NaN               NaN        NaN  ...               NaN              NaN                NaN               NaN
+86         Tags     Ticket         Open Date     Symbol  ...               NaN              NaN                NaN               NaN
+87          NaN  322715636  08/31/2023 17:45     USDHKD  ...               NaN              NaN                NaN               NaN
+88          NaN  324121867  09/22/2023 05:55     EURSGD  ...               NaN              NaN                NaN               NaN
+89          NaN  325845093  10/12/2023 01:05     SGDCHF  ...               NaN              NaN                NaN               NaN
+90          NaN  326000462  10/13/2023 14:00     EURCAD  ...               NaN              NaN                NaN               NaN
+91          NaN  326148474  10/16/2023 12:55     USDHKD  ...               NaN              NaN                NaN               NaN
+
+[7 rows x 31 columns]

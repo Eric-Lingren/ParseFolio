@@ -1,0 +1,67 @@
+2023-10-15 03:58:05,475 - INFO - ***** Beginning Parsing For File: data/raw_data/live.csv *****
+2023-10-15 03:58:05,481 - INFO - Method Ran: remove_blank_rows
+2023-10-15 03:58:05,482 - INFO - Method Successful: remove_blank_rows
+2023-10-15 03:58:05,482 - INFO - Method Ran: remove_open_trade_rows
+2023-10-15 03:58:05,483 - INFO - Method Successful: remove_open_trade_rows
+2023-10-15 03:58:05,483 - INFO - The Following Rows Were Dropped:
+2023-10-15 03:58:05,483 - INFO -             Tags     Ticket         Open Date Close Date  Symbol  ... Min(USD) Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+175  Open Trades        NaN               NaN        NaN     NaN  ...      NaN               NaN              NaN                NaN               NaN
+176         Tags     Ticket         Open Date     Symbol  Action  ...      NaN               NaN              NaN                NaN               NaN
+177          NaN  144616122  09/05/2023 11:05     EURUSD     Buy  ...      NaN               NaN              NaN                NaN               NaN
+
+[3 rows x 31 columns]
+2023-10-15 03:58:05,499 - INFO - Method Ran: remove_deposit_rows
+2023-10-15 03:58:05,500 - INFO - Method Successful: remove_deposit_rows
+2023-10-15 03:58:05,500 - INFO - The Following Rows Were Dropped:
+2023-10-15 03:58:05,500 - INFO -     Tags     Ticket         Open Date Close Date Symbol  ... Min(USD) Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+3    NaN  144865464  09/16/2023 10:34        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+8    NaN  144552026  09/01/2023 00:59        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+21   NaN  144177413  08/15/2023 19:42        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+30   NaN  143812547  07/31/2023 18:39        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+47   NaN  143466852  07/15/2023 10:57        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+59   NaN  143149597  07/04/2023 02:31        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+76   NaN  142757445  06/17/2023 04:47        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+91   NaN  142408626  06/01/2023 04:54        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+93   NaN  142286163  05/26/2023 00:00        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+96   NaN  142256471  05/25/2023 00:00        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+100  NaN  142183709  05/22/2023 19:23        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+108  NaN  141859991  05/09/2023 06:05        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+128  NaN  141404782  04/20/2023 08:56        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+139  NaN  141145231  04/10/2023 11:04        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+142  NaN  141055870  04/05/2023 09:49        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+174  NaN  139774755  02/17/2023 07:13        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+
+[16 rows x 31 columns]
+2023-10-15 03:58:05,514 - INFO - Method Ran: remove_withdrawal_rows
+2023-10-15 03:58:05,514 - INFO - Method Successful: remove_withdrawal_rows
+2023-10-15 03:58:05,514 - INFO - The Following Rows Were Dropped:
+2023-10-15 03:58:05,514 - INFO -    Tags     Ticket         Open Date Close Date Symbol  ... Min(USD) Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+12  NaN  144457706  08/29/2023 11:01        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+13  NaN  144457704  08/29/2023 11:01        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+98  NaN  142221910  05/24/2023 00:00        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+99  NaN  142189526  05/23/2023 00:00        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+
+[4 rows x 31 columns]
+2023-10-15 03:58:05,523 - INFO - Method Ran: calculate_trade_durations
+2023-10-15 03:58:05,524 - INFO - Converted strings in column 'Duration (DD:HH:MM:SS)' to datetimes in column 'Duration' 
+2023-10-15 03:58:05,525 - INFO - Method Successful: calculate_trade_durations
+2023-10-15 03:58:05,525 - INFO - Dropped Column 'Duration (DD:HH:MM:SS)' 
+2023-10-15 03:58:05,525 - INFO - Method Ran: remove_tags_column
+2023-10-15 03:58:05,525 - INFO - Method Successful: remove_tags_column
+2023-10-15 03:58:05,525 - INFO - Dropped Column 'Tags' 
+2023-10-15 03:58:05,525 - INFO - ***** File Cleaned Successfully *****
+2023-10-15 03:58:05,525 - INFO - Final DataFrame Output:
+2023-10-15 03:58:05,525 - INFO -         Ticket         Open Date        Close Date  Symbol  ... Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)         Duration
+0    144615582  09/05/2023 10:50  09/21/2023 10:37  USDCHF  ...              1.4             -197.2           -218.89 15 days 23:47:40
+1    144948350  09/20/2023 03:35  09/21/2023 08:48  NZDCHF  ...             93.7               -2.6             -8.63  1 days 05:13:33
+2    144720632  09/11/2023 03:15  09/21/2023 08:48  NZDCHF  ...             38.0              -63.0            -70.56 10 days 05:33:32
+3    144818540  09/14/2023 15:20  09/14/2023 15:31  CADCHF  ...              0.0              -21.6            -72.58  0 days 00:11:16
+4    144531911  08/31/2023 10:45  09/14/2023 15:31  CADCHF  ...              0.0             -134.9           -151.09 14 days 04:46:13
+..         ...               ...               ...     ...  ...              ...                ...               ...              ...
+150  139959429  02/24/2023 18:00  02/27/2023 17:09  USDCHF  ...             96.7               -2.2             -2.79  2 days 23:09:03
+151  139915734  02/23/2023 11:45  02/27/2023 17:09  USDCHF  ...             56.0              -50.1            -21.54  4 days 05:24:02
+152  139831652  02/21/2023 04:55  02/21/2023 10:15  EURUSD  ...            100.0                0.0              0.00  0 days 05:20:02
+153  139817011  02/20/2023 15:30  02/21/2023 08:41  NZDCHF  ...             86.3               -4.1             -1.76  0 days 17:11:45
+154  139812954  02/20/2023 10:10  02/20/2023 14:33  EURUSD  ...            100.0                0.0              0.00  0 days 04:23:15
+
+[155 rows x 30 columns]

@@ -1,0 +1,2 @@
+2023-10-15 03:50:16,349 - INFO - ***** Beginning Parsing For File: ata/raw_data/pairs_test.csv[D *****
+2023-10-15 03:50:16,350 - ERROR - ERROR: The file at path 'ata/raw_data/pairs_test.csv[D' does not exist.

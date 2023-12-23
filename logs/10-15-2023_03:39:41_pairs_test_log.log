@@ -1,0 +1,78 @@
+2023-10-15 03:39:47,120 - INFO - ***** Beginning Parsing For File: data/raw_data/pairs_test.csv *****
+2023-10-15 03:39:47,123 - INFO - Method Ran: remove_blank_rows
+2023-10-15 03:39:47,123 - INFO - Method Successful: remove_blank_rows
+2023-10-15 03:39:47,123 - INFO - Method Ran: remove_open_trade_rows
+2023-10-15 03:39:47,124 - INFO - Method Successful: remove_open_trade_rows
+2023-10-15 03:39:47,124 - INFO - The Following Rows Were Dropped:
+2023-10-15 03:39:47,124 - INFO -            Tags     Ticket         Open Date Close Date  Symbol  ... Min(USD) Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+40  Open Trades        NaN               NaN        NaN     NaN  ...      NaN               NaN              NaN                NaN               NaN
+41         Tags     Ticket         Open Date     Symbol  Action  ...      NaN               NaN              NaN                NaN               NaN
+42          NaN  322697188  08/31/2023 14:25     EURJPY     Buy  ...      NaN               NaN              NaN                NaN               NaN
+43          NaN  322715636  08/31/2023 17:45     USDHKD     Buy  ...      NaN               NaN              NaN                NaN               NaN
+44          NaN  322973254  09/05/2023 10:20     USDSGD    Sell  ...      NaN               NaN              NaN                NaN               NaN
+45          NaN  324021048  09/21/2023 04:20     AUDUSD     Buy  ...      NaN               NaN              NaN                NaN               NaN
+46          NaN  324024801  09/21/2023 05:25     AUDCAD     Buy  ...      NaN               NaN              NaN                NaN               NaN
+47          NaN  324027256  09/21/2023 06:00     EURAUD    Sell  ...      NaN               NaN              NaN                NaN               NaN
+48          NaN  324070720  09/21/2023 15:35     EURJPY     Buy  ...      NaN               NaN              NaN                NaN               NaN
+
+[9 rows x 31 columns]
+2023-10-15 03:39:47,138 - INFO - Method Ran: remove_deposit_rows
+2023-10-15 03:39:47,138 - INFO - Method Successful: remove_deposit_rows
+2023-10-15 03:39:47,138 - INFO - The Following Rows Were Dropped:
+2023-10-15 03:39:47,138 - INFO -    Tags     Ticket         Open Date Close Date Symbol  ... Min(USD) Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)
+39  NaN  322592204  08/30/2023 14:45        NaN    NaN  ...      NaN               NaN              NaN                NaN               NaN
+
+[1 rows x 31 columns]
+2023-10-15 03:39:47,149 - INFO - Method Ran: remove_withdrawal_rows
+2023-10-15 03:39:47,149 - WARNING - No rows found with Action 'Withdrawal'. Skipping drop operation.
+2023-10-15 03:39:47,149 - INFO - Method Ran: calculate_trade_durations
+2023-10-15 03:39:47,150 - INFO - Converted strings in column 'Duration (DD:HH:MM:SS)' to datetimes in column 'Duration' 
+2023-10-15 03:39:47,150 - INFO - Method Successful: calculate_trade_durations
+2023-10-15 03:39:47,150 - INFO - Dropped Column 'Duration (DD:HH:MM:SS)' 
+2023-10-15 03:39:47,150 - INFO - Method Ran: remove_tags_column
+2023-10-15 03:39:47,150 - INFO - Method Successful: remove_tags_column
+2023-10-15 03:39:47,150 - INFO - Dropped Column 'Tags' 
+2023-10-15 03:39:47,150 - INFO - ***** File Cleaned Successfully *****
+2023-10-15 03:39:47,150 - INFO - Final DataFrame Output:
+2023-10-15 03:39:47,150 - INFO -        Ticket         Open Date        Close Date  Symbol Action  ... Entry Accuracy(%) Exit Accuracy(%) ProfitMissed(pips) ProfitMissed(USD)         Duration
+0   324051569  09/21/2023 12:20  09/21/2023 15:20  AUDCHF   Sell  ...               NaN              NaN                NaN               NaN  0 days 03:00:34
+1   323934386  09/20/2023 10:20  09/21/2023 14:00  SGDJPY   Sell  ...               NaN              NaN                NaN               NaN  1 days 03:40:11
+2   324031323  09/21/2023 07:30  09/21/2023 10:38  GBPAUD   Sell  ...               NaN              NaN                NaN               NaN  0 days 03:08:06
+3   324025743  09/21/2023 05:35  09/21/2023 10:30  EURGBP    Buy  ...               NaN              NaN                NaN               NaN  0 days 04:55:28
+4   324031324  09/21/2023 07:30  09/21/2023 10:30  AUDCHF    Buy  ...               NaN              NaN                NaN               NaN  0 days 03:00:09
+5   323794991  09/18/2023 20:35  09/21/2023 05:30  EURCHF   Sell  ...               NaN              NaN                NaN               NaN  2 days 08:55:45
+6   323864138  09/19/2023 16:05  09/21/2023 04:40  AUDJPY   Sell  ...               NaN              NaN                NaN               NaN  1 days 12:35:15
+7   323957898  09/20/2023 15:45  09/20/2023 22:50  AUDCAD   Sell  ...               NaN              NaN                NaN               NaN  0 days 07:05:15
+8   323954878  09/20/2023 15:00  09/20/2023 22:18  AUDCHF   Sell  ...               NaN              NaN                NaN               NaN  0 days 07:18:48
+9   323955330  09/20/2023 15:05  09/20/2023 22:18  EURAUD    Buy  ...               NaN              NaN                NaN               NaN  0 days 07:13:20
+10  323959300  09/20/2023 16:05  09/20/2023 22:18  AUDUSD   Sell  ...               NaN              NaN                NaN               NaN  0 days 06:13:05
+11  323295025  09/11/2023 03:10  09/20/2023 22:18  AUDUSD   Sell  ...               NaN              NaN                NaN               NaN  9 days 19:08:02
+12  323775910  09/18/2023 16:45  09/20/2023 14:17  AUDCAD    Buy  ...               NaN              NaN                NaN               NaN  1 days 21:32:11
+13  323827770  09/19/2023 07:45  09/19/2023 15:30  CADSGD   Sell  ...               NaN              NaN                NaN               NaN  0 days 07:45:01
+14  323336689  09/11/2023 16:00  09/19/2023 15:30  CADSGD   Sell  ...               NaN              NaN                NaN               NaN  7 days 23:30:01
+15  323601922  09/14/2023 17:55  09/18/2023 17:59  EURSGD    Buy  ...               NaN              NaN                NaN               NaN  4 days 00:04:16
+16  323686630  09/15/2023 18:05  09/18/2023 11:05  EURCHF   Sell  ...               NaN              NaN                NaN               NaN  2 days 17:00:58
+17  323671881  09/15/2023 15:35  09/15/2023 17:03  GBPUSD    Buy  ...               NaN              NaN                NaN               NaN  0 days 01:28:05
+18  323601237  09/14/2023 17:45  09/15/2023 16:29  EURCAD    Buy  ...               NaN              NaN                NaN               NaN  0 days 22:44:56
+19  323604109  09/14/2023 18:30  09/14/2023 23:08  GBPJPY    Buy  ...               NaN              NaN                NaN               NaN  0 days 04:38:12
+20  323298411  09/11/2023 04:40  09/13/2023 05:14  EURAUD    Buy  ...               NaN              NaN                NaN               NaN  2 days 00:34:17
+21  322682033  08/31/2023 11:10  09/12/2023 16:37  GBPCAD    Buy  ...               NaN              NaN                NaN               NaN 12 days 05:27:25
+22  323305833  09/11/2023 07:20  09/12/2023 15:17  AUDCAD   Sell  ...               NaN              NaN                NaN               NaN  1 days 07:57:46
+23  323409148  09/12/2023 09:05  09/12/2023 12:08  EURGBP    Buy  ...               NaN              NaN                NaN               NaN  0 days 03:03:24
+24  323318356  09/11/2023 10:25  09/12/2023 04:12  EURCAD    Buy  ...               NaN              NaN                NaN               NaN  0 days 17:47:35
+25  323320948  09/11/2023 11:10  09/11/2023 17:09  EURSGD    Buy  ...               NaN              NaN                NaN               NaN  0 days 05:59:04
+26  322956201  09/05/2023 05:25  09/11/2023 08:02  AUDSGD    Buy  ...               NaN              NaN                NaN               NaN  6 days 02:37:19
+27  323264097  09/08/2023 18:35  09/11/2023 05:17  AUDCAD    Buy  ...               NaN              NaN                NaN               NaN  2 days 10:42:54
+28  323214268  09/08/2023 05:30  09/08/2023 13:37  GBPUSD   Sell  ...               NaN              NaN                NaN               NaN  0 days 08:07:08
+29  322956202  09/05/2023 05:25  09/07/2023 15:58  EURAUD   Sell  ...               NaN              NaN                NaN               NaN  2 days 10:33:53
+30  322862790  09/01/2023 23:55  09/06/2023 14:58  EURCHF    Buy  ...               NaN              NaN                NaN               NaN  4 days 15:03:18
+31  323007463  09/05/2023 16:40  09/06/2023 10:15  EURSGD    Buy  ...               NaN              NaN                NaN               NaN  0 days 17:35:15
+32  323017693  09/05/2023 19:10  09/06/2023 10:15  EURGBP    Buy  ...               NaN              NaN                NaN               NaN  0 days 15:05:06
+33  322978208  09/05/2023 11:00  09/05/2023 16:25  GBPCHF    Buy  ...               NaN              NaN                NaN               NaN  0 days 05:25:12
+34  322828368  09/01/2023 17:05  09/05/2023 16:05  CADSGD    Buy  ...               NaN              NaN                NaN               NaN  3 days 23:00:51
+35  322910429  09/04/2023 12:25  09/05/2023 10:54  GBPJPY   Sell  ...               NaN              NaN                NaN               NaN  0 days 22:29:53
+36  322817083  09/01/2023 15:55  09/01/2023 16:47  AUDCHF   Sell  ...               NaN              NaN                NaN               NaN  0 days 00:52:49
+37  322817094  09/01/2023 15:55  09/01/2023 16:47  AUDSGD   Sell  ...               NaN              NaN                NaN               NaN  0 days 00:52:03
+38  322817085  09/01/2023 15:55  09/01/2023 16:40  AUDUSD   Sell  ...               NaN              NaN                NaN               NaN  0 days 00:45:08
+
+[39 rows x 30 columns]
