@@ -1,0 +1,73 @@
+2023-12-26 18:59:11,576 - INFO - ***** Beginning Parsing For File: data/raw_data/Dec2023Testing.csv *****
+2023-12-26 18:59:11,580 - INFO - Method Ran: remove_blank_rows
+2023-12-26 18:59:11,580 - INFO - Method Successful: remove_blank_rows
+2023-12-26 18:59:11,580 - INFO - Method Ran: remove_open_trade_rows
+2023-12-26 18:59:11,581 - WARNING - No rows found with Open Trades. Skipping drop operation.
+2023-12-26 18:59:11,581 - INFO - Method Ran: remove_deposit_rows
+2023-12-26 18:59:11,581 - WARNING - No rows found with Action 'Deposit'. Skipping drop operation.
+2023-12-26 18:59:11,581 - INFO - Method Ran: remove_withdrawal_rows
+2023-12-26 18:59:11,582 - WARNING - No rows found with action 'Withdrawal'. Skipping drop operation.
+2023-12-26 18:59:11,582 - INFO - Method Ran: calculate_trade_durations
+2023-12-26 18:59:11,583 - INFO - Converted strings in column 'Duration (DD:HH:MM:SS)' to datetimes in column 'Duration' 
+2023-12-26 18:59:11,583 - INFO - Method Successful: calculate_trade_durations
+2023-12-26 18:59:11,583 - INFO - Dropped Column 'Duration (DD:HH:MM:SS)' 
+2023-12-26 18:59:11,583 - INFO - Method Ran: remove_tags_column
+2023-12-26 18:59:11,583 - INFO - Method Successful: remove_tags_column
+2023-12-26 18:59:11,583 - INFO - Dropped Column 'Tags' 
+2023-12-26 18:59:11,584 - INFO - ***** File Cleaned Successfully *****
+2023-12-26 18:59:11,584 - INFO - Final DataFrame Output:
+2023-12-26 18:59:11,584 - INFO -        Ticket         Open Date        Close Date  Symbol  ... Exit Accuracy(%)  ProfitMissed(pips)  ProfitMissed(USD)         Duration
+0   330689305  12/21/2023 02:55  12/22/2023 16:07  CHFJPY  ...              NaN                 NaN                NaN  1 days 13:12:43
+1   330744688  12/21/2023 17:55  12/22/2023 04:46  GBPAUD  ...              NaN                 NaN                NaN  0 days 10:51:53
+2   330736925  12/21/2023 16:00  12/21/2023 17:05  GBPUSD  ...              NaN                 NaN                NaN  0 days 01:05:09
+3   330648122  12/20/2023 14:10  12/21/2023 13:17  EURCAD  ...              NaN                 NaN                NaN  0 days 23:07:04
+4   330570065  12/19/2023 12:00  12/19/2023 17:06  GBPJPY  ...              NaN                 NaN                NaN  0 days 05:06:22
+5   330571311  12/19/2023 12:20  12/19/2023 17:01  SGDJPY  ...              NaN                 NaN                NaN  0 days 04:41:14
+6   330571309  12/19/2023 12:20  12/19/2023 15:16  EURJPY  ...              NaN                 NaN                NaN  0 days 02:56:59
+7   330455223  12/15/2023 17:45  12/19/2023 14:52  GBPCAD  ...              NaN                 NaN                NaN  3 days 21:07:53
+8   330317689  12/13/2023 23:05  12/19/2023 04:49  SGDJPY  ...              NaN                 NaN                NaN  5 days 05:44:22
+9   330456099  12/15/2023 18:00  12/18/2023 18:14  USDCAD  ...              NaN                 NaN                NaN  3 days 00:14:05
+10  330352077  12/14/2023 11:00  12/18/2023 18:14  USDCAD  ...              NaN                 NaN                NaN  4 days 07:14:05
+11  329802230  12/04/2023 17:30  12/18/2023 08:56  USDHKD  ...              NaN                 NaN                NaN 13 days 15:26:28
+12  330381690  12/14/2023 17:20  12/15/2023 17:20  GBPAUD  ...              NaN                 NaN                NaN  1 days 00:00:49
+13  330198307  12/12/2023 11:45  12/15/2023 17:14  EURCAD  ...              NaN                 NaN                NaN  3 days 05:29:41
+14  330437280  12/15/2023 13:10  12/15/2023 15:39  AUDSGD  ...              NaN                 NaN                NaN  0 days 02:29:19
+15  330409769  12/15/2023 02:10  12/15/2023 10:19  EURCHF  ...              NaN                 NaN                NaN  0 days 08:09:16
+16  330318952  12/13/2023 23:45  12/14/2023 16:20  EURJPY  ...              NaN                 NaN                NaN  0 days 16:35:00
+17  330316000  12/13/2023 22:40  12/14/2023 16:13  EURAUD  ...              NaN                 NaN                NaN  0 days 17:33:43
+18  330363498  12/14/2023 14:05  12/14/2023 15:30  GBPUSD  ...              NaN                 NaN                NaN  0 days 01:25:04
+19  330317332  12/13/2023 23:00  12/14/2023 15:30  GBPUSD  ...              NaN                 NaN                NaN  0 days 16:30:03
+20  330335841  12/14/2023 04:55  12/14/2023 10:58  AUDUSD  ...              NaN                 NaN                NaN  0 days 06:03:02
+21  330335829  12/14/2023 04:55  12/14/2023 10:51  GBPAUD  ...              NaN                 NaN                NaN  0 days 05:56:14
+22  330292596  12/13/2023 17:20  12/14/2023 05:43  CHFJPY  ...              NaN                 NaN                NaN  0 days 12:23:26
+23  330318579  12/13/2023 23:30  12/14/2023 02:30  GBPAUD  ...              NaN                 NaN                NaN  0 days 03:00:11
+24  330293660  12/13/2023 17:40  12/14/2023 02:30  GBPAUD  ...              NaN                 NaN                NaN  0 days 08:50:12
+25  330052612  12/08/2023 10:30  12/13/2023 21:17  USDSGD  ...              NaN                 NaN                NaN  5 days 10:47:06
+26  330180981  12/12/2023 05:15  12/12/2023 15:46  AUDUSD  ...              NaN                 NaN                NaN  0 days 10:31:08
+27  330183392  12/12/2023 06:40  12/12/2023 10:43  EURCHF  ...              NaN                 NaN                NaN  0 days 04:03:05
+28  330183492  12/12/2023 06:45  12/12/2023 10:28  EURAUD  ...              NaN                 NaN                NaN  0 days 03:43:44
+29  329989836  12/07/2023 10:25  12/12/2023 10:28  EURAUD  ...              NaN                 NaN                NaN  5 days 00:03:44
+30  330188288  12/12/2023 09:10  12/12/2023 10:00  GBPUSD  ...              NaN                 NaN                NaN  0 days 00:50:32
+31  330141848  12/11/2023 14:30  12/11/2023 17:25  GBPCHF  ...              NaN                 NaN                NaN  0 days 02:55:19
+32  330142414  12/11/2023 14:40  12/11/2023 16:26  GBPAUD  ...              NaN                 NaN                NaN  0 days 01:46:43
+33  330076879  12/08/2023 16:55  12/08/2023 17:47  GBPCAD  ...              NaN                 NaN                NaN  0 days 00:52:09
+34  330057527  12/08/2023 11:55  12/08/2023 12:34  GBPUSD  ...              NaN                 NaN                NaN  0 days 00:39:41
+35  329989241  12/07/2023 10:10  12/07/2023 19:46  CHFJPY  ...              NaN                 NaN                NaN  0 days 09:36:57
+36  329930821  12/06/2023 10:30  12/07/2023 19:42  GBPCAD  ...              NaN                 NaN                NaN  1 days 09:12:28
+37  329925861  12/06/2023 09:50  12/07/2023 16:16  EURCHF  ...              NaN                 NaN                NaN  1 days 06:26:47
+38  329992563  12/07/2023 11:55  12/07/2023 12:22  GBPJPY  ...              NaN                 NaN                NaN  0 days 00:27:01
+39  329985810  12/07/2023 08:20  12/07/2023 12:22  GBPJPY  ...              NaN                 NaN                NaN  0 days 04:02:01
+40  329989117  12/07/2023 10:05  12/07/2023 12:13  SGDJPY  ...              NaN                 NaN                NaN  0 days 02:08:03
+41  329842321  12/05/2023 09:45  12/07/2023 12:13  SGDJPY  ...              NaN                 NaN                NaN  2 days 02:28:01
+42  329989223  12/07/2023 10:10  12/07/2023 10:14  EURJPY  ...              NaN                 NaN                NaN  0 days 00:04:07
+43  329700794  12/01/2023 18:50  12/07/2023 10:14  EURJPY  ...              NaN                 NaN                NaN  5 days 15:24:07
+44  329930766  12/06/2023 10:30  12/06/2023 11:10  GBPJPY  ...              NaN                 NaN                NaN  0 days 00:40:40
+45  329833016  12/05/2023 05:35  12/05/2023 18:10  GBPCAD  ...              NaN                 NaN                NaN  0 days 12:35:27
+46  329841502  12/05/2023 09:30  12/05/2023 11:00  GBPJPY  ...              NaN                 NaN                NaN  0 days 01:30:22
+47  329710608  12/01/2023 19:35  12/04/2023 09:43  GBPUSD  ...              NaN                 NaN                NaN  2 days 14:08:43
+48  329698086  12/01/2023 18:10  12/04/2023 09:37  GBPAUD  ...              NaN                 NaN                NaN  2 days 15:27:03
+49  329720475  12/01/2023 20:55  12/04/2023 09:18  AUDUSD  ...              NaN                 NaN                NaN  2 days 12:23:19
+50  329660672  12/01/2023 07:35  12/01/2023 18:45  USDSGD  ...              NaN                 NaN                NaN  0 days 11:10:55
+
+[51 rows x 30 columns]
+2023-12-26 18:59:11,610 - INFO - Saved DataFrame as new file: ./data/clean_data/12-26-2023_18:59:04_Dec2023Testing-cleaned.csv
