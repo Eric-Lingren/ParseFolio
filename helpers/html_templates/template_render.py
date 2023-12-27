@@ -1,18 +1,25 @@
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+from helpers.chart import Chart
+
 
 class TemplateRender:
     TIMESTAMP = None
     env = None
+    DF = None
 
-    def __init__(self, template_folder, TIMESTAMP, CSV_FILE_NAME):
+    def __init__(self, template_folder, TIMESTAMP, CSV_FILE_NAME, DF):
         self.env = Environment(loader=FileSystemLoader(template_folder))
         self.TIMESTAMP = TIMESTAMP
         self.CSV_FILE_NAME = CSV_FILE_NAME
+        self.DF = DF
 
 
     def build_report(self):
         table_component = self.generate_trade_report_table()
-        full_html_report = self.compile_full_report(table_component=table_component)
+        trade_counts_by_symbol_chart = Chart.generate_trade_counts_by_symbol(self.DF)
+        average_trade_duration_by_symbol_chart = Chart.generate_average_trade_duration_by_symbol(self.DF)
+
+        full_html_report = self.compile_full_report(table_component=table_component, trade_counts_by_symbol_chart=trade_counts_by_symbol_chart, average_trade_duration_by_symbol_chart=average_trade_duration_by_symbol_chart)
         self.save_html_file(html_content=full_html_report)
 
 
@@ -44,16 +51,18 @@ class TemplateRender:
 
     
     def generate_trade_report_table(self):
-        table_data = { 'tableTitle': 'MY TABLE TITLE'}
+        table_data = { 'tableTitle': 'MY TABLE TITLE', 'df': self.DF}
         table_component = self._render_template('/components/table_component.html', table_data)
         return table_component
 
 
-    def compile_full_report(self, table_component):
+    def compile_full_report(self, table_component, trade_counts_by_symbol_chart, average_trade_duration_by_symbol_chart):
         data = {
             'title': 'Analysis Report',
             'description': 'This is a sample analysis report.',
             'table_component': table_component,  # Injected table component
+            'trade_counts_by_symbol_chart': trade_counts_by_symbol_chart, 
+            'average_trade_duration_by_symbol_chart': average_trade_duration_by_symbol_chart, 
         }
         html_content = self._render_template('base_template.html', data)
         return html_content

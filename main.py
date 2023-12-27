@@ -45,66 +45,32 @@ def validate_load_and_clean_data():
   DF = data_processor.run_all_data_processing_tasks(TIMESTAMP, CSV_FILE_NAME)
 
 
-def build_html_template():
+def build_html_report():
   print('building template....')
-  template_render = TemplateRender(template_folder=HTML_TEMPLATE_DIR, TIMESTAMP=TIMESTAMP, CSV_FILE_NAME=CSV_FILE_NAME)
+  template_render = TemplateRender(template_folder=HTML_TEMPLATE_DIR, TIMESTAMP=TIMESTAMP, CSV_FILE_NAME=CSV_FILE_NAME, DF=DF)
   template_render.build_report()
 
 
 if __name__ == "__main__":
   init_app()
   validate_load_and_clean_data()
-  build_html_template()
-  print(DF)
-
-
-
-
-# # Import the table component
-# table_data = { 'tableTitle': 'MY TABLE TITLE'}
-# table_component = template_renderer.render_template('/components/table_component.html', table_data)
-
-# # Define data for the HTML Report template
-# data = {
-#     'title': 'Analysis Report',
-#     'description': 'This is a sample analysis report.',
-#     'table_component': table_component,  # Injected table component
-# }
-
-# # Render the template
-# html_content = template_renderer.render_template('base_template.html', data)
-# html_output_filename = f'./data/reports/{timestamp}_{csv_file_name}-report.html'
-
-# # Save the HTML report
-# with open(html_output_filename, 'w') as f:
-#     f.write(html_content)
+  build_html_report()
+  # print(DF)
 
 
 
 
 
 
-# def main():
-#     # ...
-
-# def load_and_clean_data(file_path):
-#     # ...
-
-# def generate_html_report(df, timestamp, csv_file_name):
-#     # ...
-
-# if __name__ == "__main__":
-#     main()
 
 
 
 
-
-# trade_counts_df = Trade_Analysis.calculate_trade_counts(df)
+# trade_counts_df = Trade_Analysis.calculate_trade_counts_by_symbol(DF)
 # print(trade_counts_df)
 # print('\n')
 
-# mean_number_of_trades = Trade_Analysis.calculate_mean_trades(df)
+# mean_number_of_trades = Trade_Analysis.calculate_mean_trades(DF)
 # print(mean_number_of_trades)
 # print('\n')
 
@@ -115,23 +81,22 @@ if __name__ == "__main__":
 # print('\n')
 
 
-# average_duration_by_pair_hours = Trade_Analysis.rank_pairs_by_trade_duration(df)
+# average_duration_by_pair_hours = Trade_Analysis.rank_pairs_by_trade_duration(DF)
 # print('average_duration_by_pair_hours')
 # print(average_duration_by_pair_hours)
 # print('\n')
 
 
-# total_profit_loss_by_pair = Trade_Analysis.rank_pairs_by_total_profit(df)
+# total_profit_loss_by_pair = Trade_Analysis.rank_pairs_by_total_profit(DF)
 # print('total_profit_loss_by_pair')
 # print(total_profit_loss_by_pair)
 # print('\n')
 
 # # Merge the DataFrames on the 'Symbol' column
 # combined_df = average_duration_by_pair_hours.merge(total_profit_loss_by_pair, on='Symbol')
-# print('Combined DataFrame:')
-# print(combined_df)
-# print('\n')
-
+# # print('Combined DataFrame:')
+# # print(combined_df)
+# # print('\n')
 
 
 # profit_per_hour_of_holding_time = Trade_Analysis.calculate_profit_per_hour_of_holding_time(combined_df)
@@ -147,10 +112,7 @@ if __name__ == "__main__":
 # print('\n')
 
 
-
-
-
-# average_profit_loss_per_trade_by_pair = df.groupby('Symbol')['Profit'].mean().reset_index()
+# average_profit_loss_per_trade_by_pair = DF.groupby('Symbol')['Profit'].mean().reset_index()
 # print('average_profit_loss_per_trade_by_pair')
 # print(average_profit_loss_per_trade_by_pair)
 # print('\n')

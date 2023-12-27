@@ -2,7 +2,7 @@ import pandas as pd
 
 class Trade_Analysis():
     @staticmethod
-    def calculate_trade_counts(df):
+    def calculate_trade_counts_by_symbol(df):
         # Check if 'Symbol' column exists in the DataFrame
         if 'Symbol' not in df.columns:
             raise ValueError("DataFrame does not contain a column named 'Symbol'.")
