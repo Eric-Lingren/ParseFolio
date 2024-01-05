@@ -1,0 +1,33 @@
+2024-01-04 17:14:47,275 - INFO - ***** Beginning Parsing For File: data/raw_data/statement.csv *****
+2024-01-04 17:14:47,281 - INFO - Method Ran: remove_blank_rows
+2024-01-04 17:14:47,281 - INFO - Method Successful: remove_blank_rows
+2024-01-04 17:14:47,281 - INFO - Method Ran: remove_open_trade_rows
+2024-01-04 17:14:47,282 - WARNING - No rows found with Open Trades. Skipping drop operation.
+2024-01-04 17:14:47,282 - INFO - Method Ran: remove_deposit_rows
+2024-01-04 17:14:47,284 - WARNING - No rows found with Action 'Deposit'. Skipping drop operation.
+2024-01-04 17:14:47,284 - INFO - Method Ran: remove_withdrawal_rows
+2024-01-04 17:14:47,284 - WARNING - No rows found with action 'Withdrawal'. Skipping drop operation.
+2024-01-04 17:14:47,284 - INFO - Method Ran: calculate_trade_durations
+2024-01-04 17:14:47,285 - INFO - Converted strings in column 'Duration (DD:HH:MM:SS)' to datetimes in column 'Duration' 
+2024-01-04 17:14:47,286 - INFO - Method Successful: calculate_trade_durations
+2024-01-04 17:14:47,286 - INFO - Dropped Column 'Duration (DD:HH:MM:SS)' 
+2024-01-04 17:14:47,286 - INFO - Method Ran: remove_tags_column
+2024-01-04 17:14:47,286 - INFO - Method Successful: remove_tags_column
+2024-01-04 17:14:47,286 - INFO - Dropped Column 'Tags' 
+2024-01-04 17:14:47,287 - INFO - ***** File Cleaned Successfully *****
+2024-01-04 17:14:47,287 - INFO - Final DataFrame Output:
+2024-01-04 17:14:47,287 - INFO -        Ticket         Open Date        Close Date  Symbol  ... Exit Accuracy(%)  ProfitMissed(pips)  ProfitMissed(USD)         Duration
+0   331258088  01/04/2024 01:05  01/04/2024 15:30  SGDCHF  ...              NaN                 NaN                NaN  0 days 14:25:13
+1   331156504  01/02/2024 16:55  01/04/2024 11:30  EURSGD  ...              NaN                 NaN                NaN  1 days 18:35:18
+2   331257806  01/04/2024 00:50  01/04/2024 10:20  EURCHF  ...              NaN                 NaN                NaN  0 days 09:30:21
+3   331234125  01/03/2024 17:55  01/04/2024 08:28  GBPAUD  ...              NaN                 NaN                NaN  0 days 14:33:40
+4   330679015  12/20/2023 23:05  01/04/2024 07:35  SGDJPY  ...              NaN                 NaN                NaN 14 days 08:30:10
+..        ...               ...               ...     ...  ...              ...                 ...                ...              ...
+78  329841502  12/05/2023 09:30  12/05/2023 11:00  GBPJPY  ...              NaN                 NaN                NaN  0 days 01:30:22
+79  329710608  12/01/2023 19:35  12/04/2023 09:43  GBPUSD  ...              NaN                 NaN                NaN  2 days 14:08:43
+80  329698086  12/01/2023 18:10  12/04/2023 09:37  GBPAUD  ...              NaN                 NaN                NaN  2 days 15:27:03
+81  329720475  12/01/2023 20:55  12/04/2023 09:18  AUDUSD  ...              NaN                 NaN                NaN  2 days 12:23:19
+82  329660672  12/01/2023 07:35  12/01/2023 18:45  USDSGD  ...              NaN                 NaN                NaN  0 days 11:10:55
+
+[83 rows x 30 columns]
+2024-01-04 17:14:47,304 - INFO - Saved DataFrame as new file: ./data/clean_data/01-04-2024_17:14:24_statement-cleaned.csv
