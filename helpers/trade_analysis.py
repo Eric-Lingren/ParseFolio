@@ -88,24 +88,35 @@ class Trade_Analysis():
         
         return sorted_df
 
+
+
     @staticmethod
-    def rank_pairs_by_total_profit(df):
-        total_profit_loss_by_pair = df.groupby('Symbol')['Profit'].sum()
-        sorted_df = total_profit_loss_by_pair.sort_values(ascending=False).reset_index()
+    def rank_pairs_by_total_net_profit(df):
+        # Calculate total profit per pair
+        total_profit_loss_by_pair = df.groupby('Symbol')['Profit'].sum().reset_index()
+        # Rename the 'Profit' column to 'Total Net Profit'
+        total_profit_loss_by_pair.rename(columns={'Profit': 'Total Net Profit'}, inplace=True)
+        # Sort the DataFrame by 'Total Net Profit' in descending order
+        sorted_df = total_profit_loss_by_pair.sort_values(by='Total Net Profit', ascending=False).reset_index(drop=True)
         return sorted_df
     
 
-    @staticmethod
-    def calculate_profit_per_hour_of_holding_time(df):
-        # Calculate average profit per hour
-        df['Average Profit per Hour'] = df['Profit'] / df['Duration']\
 
-        # Sort the DataFrame by 'Average Profit per Hour' in descending order
-        sorted_df = df.sort_values(by='Average Profit per Hour', ascending=False)
+
+
+    @staticmethod
+    def calculate_profit_per_day_of_holding_time(df):
+        # Calculate average profit per day
+        df['Average Profit per Day'] = df['Profit'] / (df['Duration'] / (60 * 24))  # Duration is in minutes, converting to days
+
+        # Group by 'Symbol' and calculate the mean of 'Average Profit per Day' for each currency pair
+        average_profit_per_day = df.groupby('Symbol')['Average Profit per Day'].mean().reset_index()
+
+        # Sort the DataFrame by 'Average Profit per Day' in descending order
+        sorted_df = average_profit_per_day.sort_values(by='Average Profit per Day', ascending=False)
 
         # Reset the index for cleaner output
         sorted_df = sorted_df.reset_index(drop=True)
-
         return sorted_df
 
 

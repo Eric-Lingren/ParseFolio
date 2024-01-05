@@ -18,8 +18,16 @@ class TemplateRender:
         table_component = self.generate_trade_report_table()
         trade_counts_by_symbol_chart = Chart.generate_trade_counts_by_symbol(self.DF)
         average_trade_duration_by_symbol_chart = Chart.generate_average_trade_duration_by_symbol(self.DF)
+        profit_per_day_by_symbol_chart = Chart.generate_profit_per_day_by_symbol(self.DF)
+        total_net_profit_by_symbol_chart = Chart.generate_total_net_profit_by_symbol(self.DF)
 
-        full_html_report = self.compile_full_report(table_component=table_component, trade_counts_by_symbol_chart=trade_counts_by_symbol_chart, average_trade_duration_by_symbol_chart=average_trade_duration_by_symbol_chart)
+        full_html_report = self.compile_full_report(
+            table_component=table_component, 
+            trade_counts_by_symbol_chart=trade_counts_by_symbol_chart, 
+            average_trade_duration_by_symbol_chart=average_trade_duration_by_symbol_chart, 
+            profit_per_day_by_symbol_chart=profit_per_day_by_symbol_chart,
+            total_net_profit_by_symbol_chart=total_net_profit_by_symbol_chart,
+        )
         self.save_html_file(html_content=full_html_report)
 
 
@@ -56,13 +64,15 @@ class TemplateRender:
         return table_component
 
 
-    def compile_full_report(self, table_component, trade_counts_by_symbol_chart, average_trade_duration_by_symbol_chart):
+    def compile_full_report(self, table_component, trade_counts_by_symbol_chart, average_trade_duration_by_symbol_chart, profit_per_day_by_symbol_chart, total_net_profit_by_symbol_chart):
         data = {
             'title': 'Analysis Report',
             'description': 'This is a sample analysis report.',
             'table_component': table_component,  # Injected table component
             'trade_counts_by_symbol_chart': trade_counts_by_symbol_chart, 
             'average_trade_duration_by_symbol_chart': average_trade_duration_by_symbol_chart, 
+            "profit_per_day_by_symbol_chart": profit_per_day_by_symbol_chart,
+            "total_net_profit_by_symbol_chart": total_net_profit_by_symbol_chart,
         }
         html_content = self._render_template('base_template.html', data)
         return html_content
